@@ -22,17 +22,12 @@ async def on_message(message):
     return
   if message.content.startswith('$hello'):
     await message.channel.send('Hello!')
-
-def code(env_code_name):
-    load_dotenv(find_dotenv())
-    try:
-        return os.environ.get(env_code_name)
-    except(TypeError):
-        print('Make sure project directory contains .env file.')
-
+    
 
 try:
-    client.run(code('CODE'))
+    load_dotenv(find_dotenv())
+    code = os.environ.get('CODE')
+    client.run(code)
 except(TypeError):
     print('',
           'Failure to start.',
